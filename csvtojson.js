@@ -246,7 +246,7 @@ var getCsvFiles = function(path) {
   files.forEach(function(file) {
     if(fs.lstatSync(path + file).isDirectory()) {
       csvFiles = csvFiles.concat(getCsvFiles(path + file + '/'));
-    } else if(file.indexOf('pct') !== -1) {
+    } else if(file.indexOf('.csv') !== -1 && file.indexOf('Correction') === -1 && file.indexOf('park') === -1) {
       csvFiles.push(path + file);
     }
   });
