@@ -200,7 +200,7 @@ var parseLines = function(lines) {
 };
 
 var getFileDate = function(d) {
-  return (d.getMonth() + 1) + ':' + d.getDate() + ':' + d.getFullYear();
+  return (d.getMonth() + 1) + '-' + d.getDate() + '-' + d.getFullYear();
 };
 
 var buildFilename = function(startDate, endDate, precinct) {
