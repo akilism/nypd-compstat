@@ -42,7 +42,7 @@ var parseHistorical = function(crime, lineData, keys) {
 
 var getFormat1 = function(line) {
   var lineSplit = line.split('",');
-  var re = /[0-9]/, re2 = /"/g, re3 = /[a-z] [0-9]/i;
+  var re = /[0-9]/, re2 = /"/g, re3 = /[a-z.] [0-9]/i;
   var idx = re3.exec(lineSplit[0]);
   var initialPart, firstVal;
   if(idx) {
@@ -67,14 +67,14 @@ var getFormat2 = function(line) {
 };
 
 var getFormat3 = function(line) {
-  var re = /[a-z] [0-9]/i;
+  var re = /[a-z.] [0-9]/i;
   var idx = re.exec(line).index + 2;
   return [line.substr(0, idx), line.substr(idx).replace(',', '')];
 };
 
 var getData = function(lines, type, keys) {
   var parseFunction = (type === 'crime') ? parseCrime : parseHistorical;
-  var re = /[a-z] [0-9]/i;
+  var re = /[a-z.] [0-9]/i;
 
   return lines.map(function(line) {
     if(line.indexOf('Historical') === -1) {
@@ -83,7 +83,7 @@ var getData = function(lines, type, keys) {
         lineParts = getFormat1(line);
       } else if(line.indexOf(',"') !== -1) {
         lineParts = getFormat2(line);
-      } else if (re.exec(line)) {
+      } else if(re.exec(line)) {
         lineParts = getFormat3(line);
       } else {
         lineParts = line.split(',');
@@ -250,6 +250,7 @@ var getCsvFiles = function(path) {
       csvFiles.push(path + file);
     }
   });
+
   return csvFiles;
 };
 
