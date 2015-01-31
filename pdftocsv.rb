@@ -36,27 +36,3 @@ def convertPDF(path, file)
 end
 
 traversePath(pdf_file_path)
-
-
-# pdf_file_path = "raw_data/pdf/"
-# files = Dir::entries(pdf_file_path)
-# out_file_path = "raw_data/csv/"
-
-# files[2..files.length].each do |pdf_file_name|
-
-#   out_file_name = pdf_file_name.gsub(".pdf", ".csv")
-#   puts "file: " + pdf_file_path + pdf_file_name
-#   puts "output file: " + out_file_path + out_file_name
-#   out = open(out_file_path + out_file_name, 'w')
-
-#   extractor = Tabula::Extraction::ObjectExtractor.new(pdf_file_path + pdf_file_name, :all)
-#   extractor.extract.each_with_index do |pdf_page, page_index|
-#     puts "extracting file: " + pdf_file_name
-#     out << pdf_page.get_table.to_csv
-#   end
-#   extractor.close!
-#   puts "writing file: " + out_file_name
-#   out.close
-# end
-
-
